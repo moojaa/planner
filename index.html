@@ -20,6 +20,7 @@
   #lock input { width:100%; padding:13px 16px; border:2px solid #ffd6e0; border-radius:14px; font-size:16px; text-align:center; outline:none; }
   #lock input:focus { border-color:#ff758c; }
   #lock button { width:100%; margin-top:12px; padding:13px; border:none; border-radius:14px; background:#ff6b8b; color:#fff; font-size:16px; font-weight:700; cursor:pointer; }
+  #lock #nope { width:auto; background:#fff; color:#adb5bd; border:2px solid #e9ecef; padding:10px 18px; font-size:14px; transition:left .12s ease, top .12s ease; z-index:101; touch-action:none; }
   #lock .err { color:#e8590c; font-size:13px; margin-top:10px; height:16px; }
 
   /* header */
@@ -82,6 +83,7 @@
       <p>입력해 주세요</p>
       <input id="pw" type="password" placeholder="••••••••" autocomplete="off">
       <button onclick="tryUnlock()">열기 / Mở</button>
+      <button id="nope" type="button">거절 / Từ chối 😝</button>
       <div class="err" id="err"></div>
     </div>
   </div>
@@ -350,6 +352,40 @@ function render(){
 
   document.getElementById('content').innerHTML = h;
 }
+
+// ---- 도망가는 "거절" 버튼 ----
+const nope = document.getElementById('nope');
+let nopeFixed = false;
+function lockVisible(){ return document.getElementById('lock').style.display !== 'none'; }
+function dodge(px, py){
+  const bw = nope.offsetWidth, bh = nope.offsetHeight;
+  const maxX = Math.max(5, window.innerWidth  - bw - 8);
+  const maxY = Math.max(5, window.innerHeight - bh - 8);
+  let nx, ny, tries = 0;
+  do {
+    nx = 5 + Math.random() * maxX;
+    ny = 5 + Math.random() * maxY;
+    tries++;
+  } while (px != null && Math.hypot((nx+bw/2)-px, (ny+bh/2)-py) < 160 && tries < 25);
+  if(!nopeFixed){ nope.style.position = 'fixed'; nope.style.margin = '0'; nopeFixed = true; }
+  nope.style.left = nx + 'px';
+  nope.style.top  = ny + 'px';
+}
+// 데스크탑: 커서가 가까워지면 도망
+document.addEventListener('mousemove', e => {
+  if(!lockVisible()) return;
+  const r = nope.getBoundingClientRect();
+  const cx = r.left + r.width/2, cy = r.top + r.height/2;
+  if(Math.hypot(e.clientX - cx, e.clientY - cy) < 95) dodge(e.clientX, e.clientY);
+});
+// 모바일: 누르려고 터치하는 순간 도망 (클릭 안 되게 preventDefault)
+nope.addEventListener('touchstart', e => {
+  e.preventDefault();
+  const t = e.touches[0];
+  dodge(t.clientX, t.clientY);
+}, { passive:false });
+// 혹시라도 클릭되면 또 도망
+nope.addEventListener('click', e => { e.preventDefault(); dodge(window.innerWidth/2, window.innerHeight/2); });
 
 // auto-unlock within session
 if(sessionStorage.getItem('ok')==='1'){ reveal(); }
