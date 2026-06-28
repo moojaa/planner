@@ -64,6 +64,7 @@
   .flag { font-size:14px; width:30px; flex-shrink:0; text-align:center; }
   .rname { font-weight:700; font-size:14px; }
   .raddr { color:#868e96; font-size:11.5px; }
+  .rprice { color:#2f9e44; font-size:11.5px; font-weight:700; margin-top:2px; }
   .chev { margin-left:auto; color:#ced4da; font-size:18px; flex-shrink:0; }
   .maphint { font-size:11px; color:#adb5bd; text-align:center; margin:8px 0 2px; }
 
@@ -133,10 +134,10 @@ function mapUrl(q){ return "https://www.google.com/maps/search/?api=1&query="+en
 const T = {
   ko:{ brand:"주말 플랜 ✨", langBtn:"🇻🇳 Tiếng Việt", circus:"🎪 서커스", zoo:"🦒 동물원",
        subA:"A · 사이공", subB:"B · 수오이띠엔", sched:"⏰ 일정", cafe:"☕ 카페 (포토 스팟)",
-       photo:"📷 사진 찍기 좋은 곳", maphint:"👆 이름을 누르면 지도가 열려요 (가기 전 영업 확인!)" },
+       photo:"📷 사진 찍기 좋은 곳", maphint:"👆 탭하면 지도 (가기 전 영업 확인!) · 💵 1인 기준 🟢저렴 🟡보통 🟠높음" },
   vi:{ brand:"Kế hoạch cuối tuần ✨", langBtn:"🇰🇷 한국어", circus:"🎪 Xiếc", zoo:"🦒 Sở thú",
        subA:"A · Thảo Cầm Viên", subB:"B · Suối Tiên", sched:"⏰ Lịch trình", cafe:"☕ Cà phê (chụp hình)",
-       photo:"📷 Chỗ chụp hình đẹp", maphint:"👆 Bấm vào tên để mở bản đồ (kiểm tra mở cửa nhé!)" }
+       photo:"📷 Chỗ chụp hình đẹp", maphint:"👆 Bấm để mở bản đồ (kiểm tra mở cửa!) · 💵/người 🟢rẻ 🟡vừa 🟠cao" }
 };
 
 /* ---------- DATA ---------- */
@@ -149,9 +150,9 @@ const D = {
         ["18:45","저녁 식사","아래 식당 중 택1",""],
         ["20:00","공원 산책 · 수다","지아딘 공원","Cong vien Gia Dinh"]],
       groups:[["저녁 (공원 인근)",[
-        ["🇰🇷","Gogi House","Emart 고밥, 366 Phan Văn Trị · 구운 고기","Gogi House Emart Go Vap Phan Van Tri"],
-        ["🇹🇭","TukTuk Thai Bistro","13 Hoa Mai, P7, Phú Nhuận · 팟타이·커리","TukTuk Thai Bistro 13 Hoa Mai Phu Nhuan"],
-        ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · 공원 옆 정원형","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan"]]]],
+        ["🇰🇷","Gogi House","Emart 고밥, 366 Phan Văn Trị · 구운 고기","Gogi House Emart Go Vap Phan Van Tri","🟠 1인 ~250~400k · 고기부페/단품"],
+        ["🇹🇭","TukTuk Thai Bistro","13 Hoa Mai, P7, Phú Nhuận · 팟타이·커리","TukTuk Thai Bistro 13 Hoa Mai Phu Nhuan","🟡 1인 ~150~250k"],
+        ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · 공원 옆 정원형","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan","🟡 1인 ~150~250k · 베트남 가정식"]]]],
       cafes:[], note:"",
       photo:"<b>지아딘 공원</b> — 잔디·큰 나무·하늘 (해질녘 추천) · <b>Cafe Vườn Nhà Ai</b>, <b>Phố Cafe</b> (공원 전망)" },
     vi:{ tag:"Thứ Bảy 04/07", title:"🎪 Xiếc & Công viên Gia Định", sub:"Xiếc → Ăn tối → Dạo công viên",
@@ -161,9 +162,9 @@ const D = {
         ["18:45","Ăn tối","Chọn 1 quán bên dưới",""],
         ["20:00","Dạo công viên · trò chuyện","Công viên Gia Định","Cong vien Gia Dinh"]],
       groups:[["Bữa tối (gần công viên)",[
-        ["🇰🇷","Gogi House","Emart Gò Vấp, 366 Phan Văn Trị · thịt nướng","Gogi House Emart Go Vap Phan Van Tri"],
-        ["🇹🇭","TukTuk Thai Bistro","13 Hoa Mai, P7, Phú Nhuận · Pad Thai·cà ri","TukTuk Thai Bistro 13 Hoa Mai Phu Nhuan"],
-        ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · sân vườn cạnh công viên","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan"]]]],
+        ["🇰🇷","Gogi House","Emart Gò Vấp, 366 Phan Văn Trị · thịt nướng","Gogi House Emart Go Vap Phan Van Tri","🟠 ~250-400k/người · buffet/gọi món"],
+        ["🇹🇭","TukTuk Thai Bistro","13 Hoa Mai, P7, Phú Nhuận · Pad Thai·cà ri","TukTuk Thai Bistro 13 Hoa Mai Phu Nhuan","🟡 ~150-250k/người"],
+        ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · sân vườn cạnh công viên","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan","🟡 ~150-250k/người · món Việt"]]]],
       cafes:[], note:"",
       photo:"<b>Công viên Gia Định</b> — bãi cỏ·cây lớn·bầu trời (hoàng hôn) · <b>Cafe Vườn Nhà Ai</b>, <b>Phố Cafe</b> (view công viên)" }
   },
@@ -181,16 +182,16 @@ const D = {
         ["19:30","산책 · 휴식","Nguyễn Huệ / 강변",""]],
       groups:[
         ["🍱 점심 (동물원 근처·다카오)",[
-          ["🇻🇳","Hoa Túc","8 Nguyễn Bình Khiêm · 동물원 바로 옆","Hoa Tuc 8 Nguyen Binh Khiem"],
-          ["🇻🇳","Mekong Kitchen","72 Nguyễn Đình Chiểu, Đa Kao · 닭고기밥","Mekong Kitchen 72 Nguyen Dinh Chieu Da Kao"]]],
+          ["🇻🇳","Hoa Túc","8 Nguyễn Bình Khiêm · 동물원 바로 옆","Hoa Tuc 8 Nguyen Binh Khiem","🟠 1인 ~200~350k · 고기·볶음류"],
+          ["🇻🇳","Mekong Kitchen","72 Nguyễn Đình Chiểu, Đa Kao · 닭고기밥","Mekong Kitchen 72 Nguyen Dinh Chieu Da Kao","🟡 1인 ~120~200k"]]],
         ["🍽️ 저녁 (영화관·응우옌후에)",[
-          ["🇰🇷","코리아타운","Lê Thánh Tôn 일대 · 구이·찌개","Korea Town Le Thanh Ton District 1"],
-          ["🇹🇭","Lạc Thái","71/2 Mạc Thị Bưởi · 똠얌·팟타이","Lac Thai 71 Mac Thi Buoi"],
-          ["🇻🇳","Quán Ăn Ngon","160 Pasteur · 유명 베트남식","Quan An Ngon 160 Pasteur"]]] ],
+          ["🇰🇷","코리아타운","Lê Thánh Tôn 일대 · 구이·찌개","Korea Town Le Thanh Ton District 1","🟡 1인 ~150~300k"],
+          ["🇹🇭","Lạc Thái","71/2 Mạc Thị Bưởi · 똠얌·팟타이","Lac Thai 71 Mac Thi Buoi","🟠 1인 ~250~400k · 조금 높음"],
+          ["🇻🇳","Quán Ăn Ngon","160 Pasteur · 유명 베트남식","Quan An Ngon 160 Pasteur","🟡 1인 ~120~200k · 모둠 베트남식"]]] ],
       cafes:[
-        ["OKKIO Caffe","120-122 Lê Lợi, Bến Thành · 감성·포토","OKKIO Caffe 120 Le Loi Ben Thanh"],
-        ["The Workshop Coffee","27 Ngô Đức Kế · 응우옌후에 인근","The Workshop Coffee 27 Ngo Duc Ke"],
-        ["Cộng Cà Phê","Q1 지점 다수 · 레트로 감성","Cong Ca Phe District 1"]],
+        ["OKKIO Caffe","120-122 Lê Lợi, Bến Thành · 감성·포토","OKKIO Caffe 120 Le Loi Ben Thanh","💵 음료 ~50~70k"],
+        ["The Workshop Coffee","27 Ngô Đức Kế · 응우옌후에 인근","The Workshop Coffee 27 Ngo Duc Ke","💵 음료 ~55~75k"],
+        ["Cộng Cà Phê","Q1 지점 다수 · 레트로 감성","Cong Ca Phe District 1","💵 음료 ~45~65k"]],
       note:"",
       photo:"<b>식물원 구역</b> — 큰 나무·꽃·온실 (오전 햇살) · <b>응우옌후에</b> — 분수·하늘·야경" },
     vi:{ tag:"Sở thú · Phương án A", title:"🦒 Thảo Cầm Viên", sub:"Buổi sáng · thú·hoa · chiều xem Minions",
@@ -205,16 +206,16 @@ const D = {
         ["19:30","Dạo · nghỉ ngơi","Nguyễn Huệ / bờ sông",""]],
       groups:[
         ["🍱 Bữa trưa (gần sở thú·Đa Kao)",[
-          ["🇻🇳","Hoa Túc","8 Nguyễn Bình Khiêm · ngay cạnh sở thú","Hoa Tuc 8 Nguyen Binh Khiem"],
-          ["🇻🇳","Mekong Kitchen","72 Nguyễn Đình Chiểu, Đa Kao · cơm gà","Mekong Kitchen 72 Nguyen Dinh Chieu Da Kao"]]],
+          ["🇻🇳","Hoa Túc","8 Nguyễn Bình Khiêm · ngay cạnh sở thú","Hoa Tuc 8 Nguyen Binh Khiem","🟠 ~200-350k/người · món nướng/xào"],
+          ["🇻🇳","Mekong Kitchen","72 Nguyễn Đình Chiểu, Đa Kao · cơm gà","Mekong Kitchen 72 Nguyen Dinh Chieu Da Kao","🟡 ~120-200k/người"]]],
         ["🍽️ Bữa tối (gần rạp·Nguyễn Huệ)",[
-          ["🇰🇷","Korea Town","Khu Lê Thánh Tôn · quán nướng·canh","Korea Town Le Thanh Ton District 1"],
-          ["🇹🇭","Lạc Thái","71/2 Mạc Thị Bưởi · tom yum·pad thai","Lac Thai 71 Mac Thi Buoi"],
-          ["🇻🇳","Quán Ăn Ngon","160 Pasteur · quán Việt nổi tiếng","Quan An Ngon 160 Pasteur"]]] ],
+          ["🇰🇷","Korea Town","Khu Lê Thánh Tôn · quán nướng·canh","Korea Town Le Thanh Ton District 1","🟡 ~150-300k/người"],
+          ["🇹🇭","Lạc Thái","71/2 Mạc Thị Bưởi · tom yum·pad thai","Lac Thai 71 Mac Thi Buoi","🟠 ~250-400k/người · hơi cao"],
+          ["🇻🇳","Quán Ăn Ngon","160 Pasteur · quán Việt nổi tiếng","Quan An Ngon 160 Pasteur","🟡 ~120-200k/người"]]] ],
       cafes:[
-        ["OKKIO Caffe","120-122 Lê Lợi, Bến Thành · không gian đẹp","OKKIO Caffe 120 Le Loi Ben Thanh"],
-        ["The Workshop Coffee","27 Ngô Đức Kế · gần Nguyễn Huệ","The Workshop Coffee 27 Ngo Duc Ke"],
-        ["Cộng Cà Phê","Nhiều chi nhánh Q1 · phong cách retro","Cong Ca Phe District 1"]],
+        ["OKKIO Caffe","120-122 Lê Lợi, Bến Thành · không gian đẹp","OKKIO Caffe 120 Le Loi Ben Thanh","💵 đồ uống ~50-70k"],
+        ["The Workshop Coffee","27 Ngô Đức Kế · gần Nguyễn Huệ","The Workshop Coffee 27 Ngo Duc Ke","💵 đồ uống ~55-75k"],
+        ["Cộng Cà Phê","Nhiều chi nhánh Q1 · phong cách retro","Cong Ca Phe District 1","💵 đồ uống ~45-65k"]],
       note:"",
       photo:"<b>Khu vườn thực vật</b> — cây lớn·hoa·nhà kính · <b>Nguyễn Huệ</b> — đài phun nước·bầu trời·cảnh đêm" }
   },
@@ -230,16 +231,16 @@ const D = {
         ["18:30","저녁 (에어컨 ↑)","아래 ‘저녁’",""]],
       groups:[
         ["🍱 점심 (공원 내·정문)",[
-          ["🇻🇳","Suối Tiên Food Station","정문 앞 · 덮밥 등 합리적","Suoi Tien Food Station Thu Duc"],
-          ["🍴","공원 내 식당·매점","cơm tấm 세트 약 49,000₫~",""]]],
+          ["🇻🇳","Suối Tiên Food Station","정문 앞 · 덮밥 등 합리적","Suoi Tien Food Station Thu Duc","🟢 1인 ~50~100k"],
+          ["🍴","공원 내 식당·매점","공원 내 여러 매점","","🟢 ~49k~ (cơm tấm 세트)"]]],
         ["🍽️ 저녁 (Vincom 투득)",[
-          ["🇰🇷","Subin BBQ","Vincom Thủ Đức 4F · 구이 부페","Subin BBQ Vincom Thu Duc"],
-          ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức 4F · 치킨·떡볶이","Chuti Korean Food Vincom Thu Duc"],
-          ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · 샤브샤브","Manwah Vincom Le Van Viet"]]] ],
+          ["🇰🇷","Subin BBQ","Vincom Thủ Đức 4F · 구이 부페","Subin BBQ Vincom Thu Duc","🟠 1인 ~240~340k · 고기부페"],
+          ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức 4F · 치킨·떡볶이","Chuti Korean Food Vincom Thu Duc","🟢 1인 ~80~150k"],
+          ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · 샤브샤브","Manwah Vincom Le Van Viet","🟠 1인 ~270~340k · 부페"]]] ],
       cafes:[
-        ["La Rose Cafe","1306 Kha Vạn Cân, Linh Trung · 꽃 가득 동화풍 🌸","La Rose Cafe Kha Van Can Thu Duc"],
-        ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · 루프탑","Giang Duong Rooftop Le Van Viet"],
-        ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · 모던","Katali Coffee Le Van Viet Hiep Phu"]],
+        ["La Rose Cafe","1306 Kha Vạn Cân, Linh Trung · 꽃 가득 동화풍 🌸","La Rose Cafe Kha Van Can Thu Duc","💵 음료 ~45~65k"],
+        ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · 루프탑","Giang Duong Rooftop Le Van Viet","💵 음료 ~40~60k (가성비)"],
+        ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · 모던","Katali Coffee Le Van Viet Hiep Phu","💵 음료 ~45~65k"]],
       note:"⚠️ 수오이띠엔은 7군·고밥에서 멀어요(동부, 차로 40~60분) · 종일 코스 · 물놀이엔 수영복 · 모자·물 챙기기",
       photo:"<b>용·궁궐 조형물, 호수</b> — 화려한 배경·하늘 · 컬러풀 포토 스팟 多" },
     vi:{ tag:"Sở thú · Phương án B", title:"🎢 Suối Tiên", sub:"Buổi sáng · công viên chủ đề+thú+khu nước · cả ngày",
@@ -252,16 +253,16 @@ const D = {
         ["18:30","Ăn tối (mát, máy lạnh)","Mục ‘Tối’",""]],
       groups:[
         ["🍱 Bữa trưa (trong CV·cổng)",[
-          ["🇻🇳","Suối Tiên Food Station","Trước cổng · cơm v.v. hợp lý","Suoi Tien Food Station Thu Duc"],
-          ["🍴","Quán·sạp trong công viên","Set cơm tấm ~49.000₫",""]]],
+          ["🇻🇳","Suối Tiên Food Station","Trước cổng · cơm v.v. hợp lý","Suoi Tien Food Station Thu Duc","🟢 ~50-100k/người"],
+          ["🍴","Quán·sạp trong công viên","Nhiều quán trong công viên","","🟢 ~49k~ (set cơm tấm)"]]],
         ["🍽️ Bữa tối (Vincom Thủ Đức)",[
-          ["🇰🇷","Subin BBQ","Vincom Thủ Đức tầng 4 · buffet nướng","Subin BBQ Vincom Thu Duc"],
-          ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức tầng 4 · gà·tteokbokki","Chuti Korean Food Vincom Thu Duc"],
-          ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · lẩu","Manwah Vincom Le Van Viet"]]] ],
+          ["🇰🇷","Subin BBQ","Vincom Thủ Đức tầng 4 · buffet nướng","Subin BBQ Vincom Thu Duc","🟠 ~240-340k/người · buffet"],
+          ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức tầng 4 · gà·tteokbokki","Chuti Korean Food Vincom Thu Duc","🟢 ~80-150k/người"],
+          ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · lẩu","Manwah Vincom Le Van Viet","🟠 ~270-340k/người · buffet"]]] ],
       cafes:[
-        ["La Rose Cafe","1306 Kha Vạn Cân, Linh Trung · đầy hoa, cổ tích 🌸","La Rose Cafe Kha Van Can Thu Duc"],
-        ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · sân thượng","Giang Duong Rooftop Le Van Viet"],
-        ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · hiện đại","Katali Coffee Le Van Viet Hiep Phu"]],
+        ["La Rose Cafe","1306 Kha Vạn Cân, Linh Trung · đầy hoa, cổ tích 🌸","La Rose Cafe Kha Van Can Thu Duc","💵 đồ uống ~45-65k"],
+        ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · sân thượng","Giang Duong Rooftop Le Van Viet","💵 đồ uống ~40-60k"],
+        ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · hiện đại","Katali Coffee Le Van Viet Hiep Phu","💵 đồ uống ~45-65k"]],
       note:"⚠️ Suối Tiên khá xa Quận 7·Gò Vấp (phía Đông, ~40-60 phút) · cả ngày · khu nước cần đồ bơi · mang nón·nước",
       photo:"<b>Tượng rồng·cung điện, hồ nước</b> — nền hoành tráng·bầu trời · nhiều góc sống ảo" }
   }
@@ -321,11 +322,12 @@ function render(){
   p.groups.forEach(g=>{
     h += `<div class="grp-label">${g[0]}</div><div class="list">`;
     g[1].forEach(it=>{
-      const [flag,name,addr,map] = it;
+      const [flag,name,addr,map,price] = it;
+      const pr = price ? `<div class="rprice">${price}</div>` : '';
       if(map){
-        h += `<a class="row" href="${mapUrl(map)}" target="_blank"><div class="flag">${flag}</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div></div><div class="chev">›</div></a>`;
+        h += `<a class="row" href="${mapUrl(map)}" target="_blank"><div class="flag">${flag}</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div>${pr}</div><div class="chev">›</div></a>`;
       } else {
-        h += `<div class="row" style="cursor:default"><div class="flag">${flag}</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div></div></div>`;
+        h += `<div class="row" style="cursor:default"><div class="flag">${flag}</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div>${pr}</div></div>`;
       }
     });
     h += `</div>`;
@@ -336,8 +338,9 @@ function render(){
   if(p.cafes && p.cafes.length){
     h += `<div class="sec"><div class="sec-title">${t.cafe}</div><div class="list">`;
     p.cafes.forEach(c=>{
-      const [name,addr,map] = c;
-      h += `<a class="row" href="${mapUrl(map)}" target="_blank"><div class="flag">☕</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div></div><div class="chev">›</div></a>`;
+      const [name,addr,map,price] = c;
+      const pr = price ? `<div class="rprice">${price}</div>` : '';
+      h += `<a class="row" href="${mapUrl(map)}" target="_blank"><div class="flag">☕</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div>${pr}</div><div class="chev">›</div></a>`;
     });
     h += `</div></div>`;
   }
