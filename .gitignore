@@ -1,6 +1,9 @@
 # bkit 내부 상태 (배포 불필요)
 .bkit/
 
+# PDF는 로컬 보관용 (웹앱이 대체하므로 배포 제외)
+pdf/
+
 # OS 생성 파일
 Thumbs.db
 desktop.ini
