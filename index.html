@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Weekend ✨</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root { --grad: linear-gradient(135deg,#ff7eb3,#ff758c 60%,#ff9a76); --accent:#d6336c; --accent-bg:#fff0f3; }
+  body { font-family:"Malgun Gothic","Segoe UI","Arial",sans-serif; color:#2b2b2b; background:#f4f5f7; line-height:1.5; font-size:15px; }
+  .app { max-width:480px; margin:0 auto; min-height:100vh; background:#fff; }
+
+  /* lock */
+  #lock { position:fixed; inset:0; background:linear-gradient(160deg,#ff9a9e,#fecfef 70%,#a8edea); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:100; padding:24px; }
+  #lock .box { background:#fff; border-radius:22px; padding:30px 26px; width:100%; max-width:340px; text-align:center; box-shadow:0 18px 50px rgba(0,0,0,.18); }
+  #lock .emo { font-size:46px; }
+  #lock h2 { margin:10px 0 4px; font-size:19px; }
+  #lock p { color:#868e96; font-size:13px; margin-bottom:18px; }
+  #lock input { width:100%; padding:13px 16px; border:2px solid #ffd6e0; border-radius:14px; font-size:16px; text-align:center; outline:none; }
+  #lock input:focus { border-color:#ff758c; }
+  #lock button { width:100%; margin-top:12px; padding:13px; border:none; border-radius:14px; background:#ff6b8b; color:#fff; font-size:16px; font-weight:700; cursor:pointer; }
+  #lock .err { color:#e8590c; font-size:13px; margin-top:10px; height:16px; }
+
+  /* header */
+  .brand { text-align:center; padding:14px 0 6px; font-size:13px; color:#adb5bd; font-weight:700; letter-spacing:1px; }
+  .langbtn { position:absolute; top:12px; right:14px; background:#fff; border:1px solid #e9ecef; border-radius:20px; padding:6px 12px; font-size:13px; cursor:pointer; }
+  .top { position:relative; }
+
+  /* tabs */
+  .tabs { display:flex; gap:8px; padding:6px 14px 12px; }
+  .tabs button { flex:1; padding:12px; border:none; border-radius:14px; background:#f1f3f5; color:#868e96; font-size:15px; font-weight:700; cursor:pointer; }
+  .tabs button.on { background:var(--grad); color:#fff; box-shadow:0 6px 16px rgba(255,117,140,.35); }
+  .subtabs { display:flex; gap:8px; padding:0 14px 10px; }
+  .subtabs button { flex:1; padding:9px; border:2px solid #e9ecef; border-radius:12px; background:#fff; color:#868e96; font-size:13.5px; font-weight:700; cursor:pointer; }
+  .subtabs button.on { border-color:var(--accent); color:var(--accent); background:var(--accent-bg); }
+
+  /* hero */
+  .hero { margin:0 14px 14px; background:var(--grad); color:#fff; border-radius:18px; padding:20px 22px; }
+  .hero .tag { font-size:12px; letter-spacing:1.5px; opacity:.92; }
+  .hero h1 { font-size:23px; margin:5px 0 3px; }
+  .hero .sub { font-size:13.5px; opacity:.95; }
+
+  .sec { padding:0 14px; margin-bottom:16px; }
+  .sec-title { font-size:15px; font-weight:700; color:var(--accent); border-left:5px solid var(--accent); padding-left:9px; margin:16px 4px 9px; }
+
+  /* schedule */
+  .sched { border-radius:14px; overflow:hidden; border:1px solid #eee; }
+  .srow { display:flex; gap:10px; padding:11px 13px; border-bottom:1px solid #f3f3f3; }
+  .srow:last-child { border-bottom:none; }
+  .stime { font-weight:800; color:var(--accent); white-space:nowrap; width:54px; font-size:13.5px; padding-top:1px; }
+  .swhat { flex:1; font-size:14px; }
+  .swhat small { color:#adb5bd; font-size:11.5px; }
+  .splace { font-size:11.5px; color:#868e96; text-align:right; max-width:42%; }
+  .splace a { color:#1c7ed6; text-decoration:none; border-bottom:1px dotted #74c0fc; }
+
+  /* list rows (food/cafe) */
+  .grp-label { font-size:13px; font-weight:700; color:var(--accent); margin:12px 4px 6px; }
+  .list { border:1px solid #eee; border-radius:14px; overflow:hidden; }
+  a.row { display:flex; gap:11px; align-items:center; padding:12px 13px; border-bottom:1px solid #f5f5f5; text-decoration:none; color:inherit; }
+  a.row:last-child { border-bottom:none; }
+  a.row:active { background:#fafafa; }
+  .flag { font-size:14px; width:30px; flex-shrink:0; text-align:center; }
+  .rname { font-weight:700; font-size:14px; }
+  .raddr { color:#868e96; font-size:11.5px; }
+  .chev { margin-left:auto; color:#ced4da; font-size:18px; flex-shrink:0; }
+  .maphint { font-size:11px; color:#adb5bd; text-align:center; margin:8px 0 2px; }
+
+  .note { background:#fff4e6; border-radius:12px; padding:11px 14px; font-size:12.5px; color:#9c5800; margin:8px 4px; }
+  .photo { background:#f3f0ff; border-radius:12px; padding:12px 14px; font-size:13px; color:#5f3dc4; margin:4px; }
+  .footer { text-align:center; color:#ced4da; font-size:12px; padding:18px 0 28px; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- PASSWORD GATE -->
+  <div id="lock">
+    <div class="box">
+      <div class="emo">🔒💕</div>
+      <h2>비밀번호 / Mật khẩu</h2>
+      <p>입력해 주세요</p>
+      <input id="pw" type="password" placeholder="••••••••" autocomplete="off">
+      <button onclick="tryUnlock()">열기 / Mở</button>
+      <div class="err" id="err"></div>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="main" style="display:none;">
+    <div class="top">
+      <div class="brand" id="brand">주말 플랜 ✨</div>
+      <button class="langbtn" id="langbtn" onclick="toggleLang()"></button>
+    </div>
+    <div class="tabs">
+      <button id="tab-circus" onclick="setTab('circus')"></button>
+      <button id="tab-zoo" onclick="setTab('zoo')"></button>
+    </div>
+    <div class="subtabs" id="subtabs" style="display:none;">
+      <button id="sub-A" onclick="setZoo('zooA')"></button>
+      <button id="sub-B" onclick="setZoo('zooB')"></button>
+    </div>
+    <div id="content"></div>
+    <div class="footer">made with ♥</div>
+  </div>
+
+</div>
+
+<script>
+const PW = "hanacute";
+
+function tryUnlock(){
+  const v = (document.getElementById('pw').value||"").trim().toLowerCase();
+  if(v === PW){
+    sessionStorage.setItem('ok','1');
+    reveal();
+  } else {
+    document.getElementById('err').textContent = "❌ 다시 확인해 주세요 / Sai rồi";
+  }
+}
+function reveal(){
+  document.getElementById('lock').style.display='none';
+  document.getElementById('main').style.display='block';
+  render();
+}
+document.getElementById('pw').addEventListener('keydown',e=>{ if(e.key==='Enter') tryUnlock(); });
+
+function mapUrl(q){ return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q+" Ho Chi Minh"); }
+
+/* ---------- UI strings ---------- */
+const T = {
+  ko:{ brand:"주말 플랜 ✨", langBtn:"🇻🇳 Tiếng Việt", circus:"🎪 서커스", zoo:"🦒 동물원",
+       subA:"A · 사이공", subB:"B · 수오이띠엔", sched:"⏰ 일정", cafe:"☕ 카페 (포토 스팟)",
+       photo:"📷 사진 찍기 좋은 곳", maphint:"👆 이름을 누르면 지도가 열려요" },
+  vi:{ brand:"Kế hoạch cuối tuần ✨", langBtn:"🇰🇷 한국어", circus:"🎪 Xiếc", zoo:"🦒 Sở thú",
+       subA:"A · Thảo Cầm Viên", subB:"B · Suối Tiên", sched:"⏰ Lịch trình", cafe:"☕ Cà phê (chụp hình)",
+       photo:"📷 Chỗ chụp hình đẹp", maphint:"👆 Bấm vào tên để mở bản đồ" }
+};
+
+/* ---------- DATA ---------- */
+const D = {
+  circus:{ theme:{grad:"linear-gradient(135deg,#ff7eb3,#ff758c 60%,#ff9a76)",accent:"#d6336c",bg:"#fff0f3"},
+    ko:{ tag:"7월 4일 (토)", title:"🎪 서커스 & 지아딘 공원", sub:"서커스 → 저녁 → 공원 산책",
+      sched:[
+        ["17:00","서커스 관람 (약 90분)<br><small>MYSTERIOUS LAND · PRO MAX</small>","지아딘 파크 서커스<br>3 Hoàng Minh Giám","Gia Dinh Park Circus 3 Hoang Minh Giam"],
+        ["18:30","공원 산책 & 사진","지아딘 공원","Cong vien Gia Dinh"],
+        ["18:45","저녁 식사","아래 식당 중 택1",""],
+        ["20:00","공원 산책 · 수다","지아딘 공원","Cong vien Gia Dinh"]],
+      groups:[["저녁 (공원 인근)",[
+        ["🇰🇷","Taka BBQ","16 Hoa Mai, P7, Phú Nhuận · 구운 고기","Taka BBQ 16 Hoa Mai Phu Nhuan"],
+        ["🇰🇷","MoonGo 문고","284 Quang Trung, Gò Vấp · 김치찌개·면","MoonGo 284 Quang Trung Go Vap"],
+        ["🇹🇭","TukTuk Thai Bistro","Phú Nhuận · 팟타이·커리","TukTuk Thai Bistro Phu Nhuan"],
+        ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · 공원 옆 정원형","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan"]]]],
+      cafes:[], note:"",
+      photo:"<b>지아딘 공원</b> — 잔디·큰 나무·하늘 (해질녘 추천) · <b>Cafe Vườn Nhà Ai</b>, <b>Phố Cafe</b> (공원 전망)" },
+    vi:{ tag:"Thứ Bảy 04/07", title:"🎪 Xiếc & Công viên Gia Định", sub:"Xiếc → Ăn tối → Dạo công viên",
+      sched:[
+        ["17:00","Xem xiếc (khoảng 90 phút)<br><small>MYSTERIOUS LAND · PRO MAX</small>","Gia Dinh Park Circus<br>3 Hoàng Minh Giám","Gia Dinh Park Circus 3 Hoang Minh Giam"],
+        ["18:30","Dạo công viên & chụp hình","Công viên Gia Định","Cong vien Gia Dinh"],
+        ["18:45","Ăn tối","Chọn 1 quán bên dưới",""],
+        ["20:00","Dạo công viên · trò chuyện","Công viên Gia Định","Cong vien Gia Dinh"]],
+      groups:[["Bữa tối (gần công viên)",[
+        ["🇰🇷","Taka BBQ","16 Hoa Mai, P7, Phú Nhuận · thịt nướng","Taka BBQ 16 Hoa Mai Phu Nhuan"],
+        ["🇰🇷","MoonGo","284 Quang Trung, Gò Vấp · canh kim chi·mì","MoonGo 284 Quang Trung Go Vap"],
+        ["🇹🇭","TukTuk Thai Bistro","Phú Nhuận · Pad Thai·cà ri","TukTuk Thai Bistro Phu Nhuan"],
+        ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · sân vườn cạnh công viên","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan"]]]],
+      cafes:[], note:"",
+      photo:"<b>Công viên Gia Định</b> — bãi cỏ·cây lớn·bầu trời (hoàng hôn) · <b>Cafe Vườn Nhà Ai</b>, <b>Phố Cafe</b> (view công viên)" }
+  },
+
+  zooA:{ theme:{grad:"linear-gradient(135deg,#69db7c,#38d9a9 60%,#3bc9db)",accent:"#188a5e",bg:"#ebfbee"},
+    ko:{ tag:"동물원 A안", title:"🦒 사이공 동물원", sub:"아침 시작 · 동물·꽃 · 오후 미니언즈",
+      sched:[
+        ["09:00","입장","사이공 동물원<br>2 Nguyễn Bình Khiêm","Thao Cam Vien Saigon Zoo"],
+        ["~11:30","동물·식물원·꽃 + 사진","동물원 내부",""],
+        ["12:00","점심 (동물원 근처)","아래 ‘점심’",""],
+        ["13:30","카페 · 휴식","아래 ‘카페’",""],
+        ["14:30","미니언즈 관람 🎬","CGV Vincom Đồng Khởi<br>72 Lê Thánh Tôn","CGV Vincom Dong Khoi 72 Le Thanh Ton"],
+        ["16:30","응우옌후에 산책 + 사진","Nguyễn Huệ 보행자거리","Pho di bo Nguyen Hue"],
+        ["18:00","저녁 (영화관·거리 근처)","아래 ‘저녁’",""],
+        ["19:30","산책 · 휴식","Nguyễn Huệ / 강변",""]],
+      groups:[
+        ["🍱 점심 (동물원 근처·다카오)",[
+          ["🇻🇳","Hoa Túc","8 Nguyễn Bình Khiêm · 동물원 바로 옆","Hoa Tuc 8 Nguyen Binh Khiem"],
+          ["🇻🇳","Mekong Kitchen","72 Nguyễn Đình Chiểu, Đa Kao · 닭고기밥","Mekong Kitchen 72 Nguyen Dinh Chieu Da Kao"]]],
+        ["🍽️ 저녁 (영화관·응우옌후에)",[
+          ["🇰🇷","코리아타운","Lê Thánh Tôn 일대 · 구이·찌개","Korea Town Le Thanh Ton District 1"],
+          ["🇹🇭","Lạc Thái","71/2 Mạc Thị Bưởi · 똠얌·팟타이","Lac Thai 71 Mac Thi Buoi"],
+          ["🇻🇳","Quán Ăn Ngon","160 Pasteur · 유명 베트남식","Quan An Ngon 160 Pasteur"]]] ],
+      cafes:[
+        ["OKKIO Caffe","120-122 Lê Lợi, Bến Thành · 감성·포토","OKKIO Caffe 120 Le Loi Ben Thanh"],
+        ["The Workshop Coffee","27 Ngô Đức Kế · 응우옌후에 인근","The Workshop Coffee 27 Ngo Duc Ke"],
+        ["Cộng Cà Phê","Q1 지점 다수 · 레트로 감성","Cong Ca Phe District 1"]],
+      note:"",
+      photo:"<b>식물원 구역</b> — 큰 나무·꽃·온실 (오전 햇살) · <b>응우옌후에</b> — 분수·하늘·야경" },
+    vi:{ tag:"Sở thú · Phương án A", title:"🦒 Thảo Cầm Viên", sub:"Buổi sáng · thú·hoa · chiều xem Minions",
+      sched:[
+        ["09:00","Vào cổng","Thảo Cầm Viên<br>2 Nguyễn Bình Khiêm","Thao Cam Vien Saigon Zoo"],
+        ["~11:30","Xem thú·vườn thực vật·hoa + chụp hình","Trong sở thú",""],
+        ["12:00","Ăn trưa (gần sở thú)","Mục ‘Trưa’",""],
+        ["13:30","Cà phê · nghỉ ngơi","Mục ‘Cà phê’",""],
+        ["14:30","Xem phim Minions 🎬","CGV Vincom Đồng Khởi<br>72 Lê Thánh Tôn","CGV Vincom Dong Khoi 72 Le Thanh Ton"],
+        ["16:30","Dạo Nguyễn Huệ + chụp hình","Phố đi bộ Nguyễn Huệ","Pho di bo Nguyen Hue"],
+        ["18:00","Ăn tối (gần rạp·phố)","Mục ‘Tối’",""],
+        ["19:30","Dạo · nghỉ ngơi","Nguyễn Huệ / bờ sông",""]],
+      groups:[
+        ["🍱 Bữa trưa (gần sở thú·Đa Kao)",[
+          ["🇻🇳","Hoa Túc","8 Nguyễn Bình Khiêm · ngay cạnh sở thú","Hoa Tuc 8 Nguyen Binh Khiem"],
+          ["🇻🇳","Mekong Kitchen","72 Nguyễn Đình Chiểu, Đa Kao · cơm gà","Mekong Kitchen 72 Nguyen Dinh Chieu Da Kao"]]],
+        ["🍽️ Bữa tối (gần rạp·Nguyễn Huệ)",[
+          ["🇰🇷","Korea Town","Khu Lê Thánh Tôn · quán nướng·canh","Korea Town Le Thanh Ton District 1"],
+          ["🇹🇭","Lạc Thái","71/2 Mạc Thị Bưởi · tom yum·pad thai","Lac Thai 71 Mac Thi Buoi"],
+          ["🇻🇳","Quán Ăn Ngon","160 Pasteur · quán Việt nổi tiếng","Quan An Ngon 160 Pasteur"]]] ],
+      cafes:[
+        ["OKKIO Caffe","120-122 Lê Lợi, Bến Thành · không gian đẹp","OKKIO Caffe 120 Le Loi Ben Thanh"],
+        ["The Workshop Coffee","27 Ngô Đức Kế · gần Nguyễn Huệ","The Workshop Coffee 27 Ngo Duc Ke"],
+        ["Cộng Cà Phê","Nhiều chi nhánh Q1 · phong cách retro","Cong Ca Phe District 1"]],
+      note:"",
+      photo:"<b>Khu vườn thực vật</b> — cây lớn·hoa·nhà kính · <b>Nguyễn Huệ</b> — đài phun nước·bầu trời·cảnh đêm" }
+  },
+
+  zooB:{ theme:{grad:"linear-gradient(135deg,#4dabf7,#3bc9db 60%,#63e6be)",accent:"#1c7ed6",bg:"#e7f5ff"},
+    ko:{ tag:"동물원 B안", title:"🎢 수오이띠엔", sub:"아침 시작 · 테마파크+동물+물놀이 · 종일",
+      sched:[
+        ["09:00","입장","수오이띠엔<br>120 Xa lộ Hà Nội, Thủ Đức","Suoi Tien Theme Park Thu Duc"],
+        ["~12:00","테마존·동물(악어호)·사진","공원 내부",""],
+        ["12:30","점심 (공원 내/정문)","Suối Tiên Food Station",""],
+        ["14:00","오후 구경 또는 물놀이","공원 내부",""],
+        ["17:00","카페 휴식 (사진)","아래 ‘카페’",""],
+        ["18:30","저녁 (에어컨 ↑)","아래 ‘저녁’",""]],
+      groups:[
+        ["🍱 점심 (공원 내·정문)",[
+          ["🇻🇳","Suối Tiên Food Station","정문 앞 · 덮밥 등 합리적","Suoi Tien Food Station Thu Duc"],
+          ["🍴","공원 내 식당·매점","cơm tấm 세트 약 49,000₫~",""]]],
+        ["🍽️ 저녁 (Vincom 투득)",[
+          ["🇰🇷","Subin BBQ","Vincom Thủ Đức 4F · 구이 부페","Subin BBQ Vincom Thu Duc"],
+          ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức 4F · 치킨·떡볶이","Chuti Korean Food Vincom Thu Duc"],
+          ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · 샤브샤브","Manwah Vincom Le Van Viet"]]] ],
+      cafes:[
+        ["La Rose Cafe","투득 · 꽃 가득 동화풍 🌸","La Rose Cafe Thu Duc"],
+        ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · 루프탑","Giang Duong Rooftop Le Van Viet"],
+        ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · 모던","Katali Coffee Le Van Viet Hiep Phu"]],
+      note:"⚠️ 수오이띠엔은 7군·고밥에서 멀어요(동부, 차로 40~60분) · 종일 코스 · 물놀이엔 수영복 · 모자·물 챙기기",
+      photo:"<b>용·궁궐 조형물, 호수</b> — 화려한 배경·하늘 · 컬러풀 포토 스팟 多" },
+    vi:{ tag:"Sở thú · Phương án B", title:"🎢 Suối Tiên", sub:"Buổi sáng · công viên chủ đề+thú+khu nước · cả ngày",
+      sched:[
+        ["09:00","Vào cổng","Suối Tiên<br>120 Xa lộ Hà Nội, Thủ Đức","Suoi Tien Theme Park Thu Duc"],
+        ["~12:00","Khu chủ đề·thú (hồ cá sấu)·chụp hình","Trong công viên",""],
+        ["12:30","Ăn trưa (trong CV/cổng)","Suối Tiên Food Station",""],
+        ["14:00","Tham quan chiều / khu nước","Trong công viên",""],
+        ["17:00","Nghỉ cà phê (chụp hình)","Mục ‘Cà phê’",""],
+        ["18:30","Ăn tối (mát, máy lạnh)","Mục ‘Tối’",""]],
+      groups:[
+        ["🍱 Bữa trưa (trong CV·cổng)",[
+          ["🇻🇳","Suối Tiên Food Station","Trước cổng · cơm v.v. hợp lý","Suoi Tien Food Station Thu Duc"],
+          ["🍴","Quán·sạp trong công viên","Set cơm tấm ~49.000₫",""]]],
+        ["🍽️ Bữa tối (Vincom Thủ Đức)",[
+          ["🇰🇷","Subin BBQ","Vincom Thủ Đức tầng 4 · buffet nướng","Subin BBQ Vincom Thu Duc"],
+          ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức tầng 4 · gà·tteokbokki","Chuti Korean Food Vincom Thu Duc"],
+          ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · lẩu","Manwah Vincom Le Van Viet"]]] ],
+      cafes:[
+        ["La Rose Cafe","Thủ Đức · đầy hoa, phong cách cổ tích 🌸","La Rose Cafe Thu Duc"],
+        ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · sân thượng","Giang Duong Rooftop Le Van Viet"],
+        ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · hiện đại","Katali Coffee Le Van Viet Hiep Phu"]],
+      note:"⚠️ Suối Tiên khá xa Quận 7·Gò Vấp (phía Đông, ~40-60 phút) · cả ngày · khu nước cần đồ bơi · mang nón·nước",
+      photo:"<b>Tượng rồng·cung điện, hồ nước</b> — nền hoành tráng·bầu trời · nhiều góc sống ảo" }
+  }
+};
+
+/* ---------- STATE ---------- */
+let lang = localStorage.getItem('lang') || 'ko';
+let tab = 'circus';      // circus | zoo
+let zoo = 'zooA';        // zooA | zooB
+
+function toggleLang(){ lang = (lang==='ko')?'vi':'ko'; localStorage.setItem('lang',lang); render(); }
+function setTab(t){ tab=t; render(); }
+function setZoo(z){ zoo=z; render(); }
+
+function esc(s){ return s; }
+
+function render(){
+  const t = T[lang];
+  document.documentElement.lang = (lang==='ko')?'ko':'vi';
+  document.getElementById('brand').textContent = t.brand;
+  document.getElementById('langbtn').textContent = t.langBtn;
+  document.getElementById('tab-circus').textContent = t.circus;
+  document.getElementById('tab-zoo').textContent = t.zoo;
+  document.getElementById('sub-A').textContent = t.subA;
+  document.getElementById('sub-B').textContent = t.subB;
+
+  document.getElementById('tab-circus').className = (tab==='circus')?'on':'';
+  document.getElementById('tab-zoo').className = (tab==='zoo')?'on':'';
+  document.getElementById('subtabs').style.display = (tab==='zoo')?'flex':'none';
+  document.getElementById('sub-A').className = (zoo==='zooA')?'on':'';
+  document.getElementById('sub-B').className = (zoo==='zooB')?'on':'';
+
+  const key = (tab==='circus')?'circus':zoo;
+  const plan = D[key];
+  const p = plan[lang];
+
+  // theme
+  const r = document.documentElement.style;
+  r.setProperty('--grad', plan.theme.grad);
+  r.setProperty('--accent', plan.theme.accent);
+  r.setProperty('--accent-bg', plan.theme.bg);
+
+  let h = '';
+  h += `<div class="hero"><div class="tag">${p.tag}</div><h1>${p.title}</h1><div class="sub">${p.sub}</div></div>`;
+
+  // schedule
+  h += `<div class="sec"><div class="sec-title">${t.sched}</div><div class="sched">`;
+  p.sched.forEach(row=>{
+    const [time,what,place,map] = row;
+    const placeHtml = map ? `<a href="${mapUrl(map)}" target="_blank">${place} 📍</a>` : place;
+    h += `<div class="srow"><div class="stime">${time}</div><div class="swhat">${what}</div><div class="splace">${placeHtml}</div></div>`;
+  });
+  h += `</div></div>`;
+
+  // food groups
+  h += `<div class="sec"><div class="maphint">${t.maphint}</div>`;
+  p.groups.forEach(g=>{
+    h += `<div class="grp-label">${g[0]}</div><div class="list">`;
+    g[1].forEach(it=>{
+      const [flag,name,addr,map] = it;
+      if(map){
+        h += `<a class="row" href="${mapUrl(map)}" target="_blank"><div class="flag">${flag}</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div></div><div class="chev">›</div></a>`;
+      } else {
+        h += `<div class="row" style="cursor:default"><div class="flag">${flag}</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div></div></div>`;
+      }
+    });
+    h += `</div>`;
+  });
+  h += `</div>`;
+
+  // cafes
+  if(p.cafes && p.cafes.length){
+    h += `<div class="sec"><div class="sec-title">${t.cafe}</div><div class="list">`;
+    p.cafes.forEach(c=>{
+      const [name,addr,map] = c;
+      h += `<a class="row" href="${mapUrl(map)}" target="_blank"><div class="flag">☕</div><div><div class="rname">${name}</div><div class="raddr">${addr}</div></div><div class="chev">›</div></a>`;
+    });
+    h += `</div></div>`;
+  }
+
+  // note
+  if(p.note){ h += `<div class="note">${p.note}</div>`; }
+
+  // photo
+  h += `<div class="sec"><div class="sec-title">${t.photo}</div><div class="photo">${p.photo}</div></div>`;
+
+  document.getElementById('content').innerHTML = h;
+}
+
+// auto-unlock within session
+if(sessionStorage.getItem('ok')==='1'){ reveal(); }
+else { document.getElementById('pw').focus(); }
+</script>
+</body>
+</html>

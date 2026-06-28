@@ -1,0 +1,7 @@
+# bkit 내부 상태 (배포 불필요)
+.bkit/
+
+# OS 생성 파일
+Thumbs.db
+desktop.ini
+.DS_Store
