@@ -133,10 +133,10 @@ function mapUrl(q){ return "https://www.google.com/maps/search/?api=1&query="+en
 const T = {
   ko:{ brand:"주말 플랜 ✨", langBtn:"🇻🇳 Tiếng Việt", circus:"🎪 서커스", zoo:"🦒 동물원",
        subA:"A · 사이공", subB:"B · 수오이띠엔", sched:"⏰ 일정", cafe:"☕ 카페 (포토 스팟)",
-       photo:"📷 사진 찍기 좋은 곳", maphint:"👆 이름을 누르면 지도가 열려요" },
+       photo:"📷 사진 찍기 좋은 곳", maphint:"👆 이름을 누르면 지도가 열려요 (가기 전 영업 확인!)" },
   vi:{ brand:"Kế hoạch cuối tuần ✨", langBtn:"🇰🇷 한국어", circus:"🎪 Xiếc", zoo:"🦒 Sở thú",
        subA:"A · Thảo Cầm Viên", subB:"B · Suối Tiên", sched:"⏰ Lịch trình", cafe:"☕ Cà phê (chụp hình)",
-       photo:"📷 Chỗ chụp hình đẹp", maphint:"👆 Bấm vào tên để mở bản đồ" }
+       photo:"📷 Chỗ chụp hình đẹp", maphint:"👆 Bấm vào tên để mở bản đồ (kiểm tra mở cửa nhé!)" }
 };
 
 /* ---------- DATA ---------- */
@@ -149,9 +149,8 @@ const D = {
         ["18:45","저녁 식사","아래 식당 중 택1",""],
         ["20:00","공원 산책 · 수다","지아딘 공원","Cong vien Gia Dinh"]],
       groups:[["저녁 (공원 인근)",[
-        ["🇰🇷","Taka BBQ","16 Hoa Mai, P7, Phú Nhuận · 구운 고기","Taka BBQ 16 Hoa Mai Phu Nhuan"],
-        ["🇰🇷","MoonGo 문고","284 Quang Trung, Gò Vấp · 김치찌개·면","MoonGo 284 Quang Trung Go Vap"],
-        ["🇹🇭","TukTuk Thai Bistro","Phú Nhuận · 팟타이·커리","TukTuk Thai Bistro Phu Nhuan"],
+        ["🇰🇷","Gogi House","Emart 고밥, 366 Phan Văn Trị · 구운 고기","Gogi House Emart Go Vap Phan Van Tri"],
+        ["🇹🇭","TukTuk Thai Bistro","13 Hoa Mai, P7, Phú Nhuận · 팟타이·커리","TukTuk Thai Bistro 13 Hoa Mai Phu Nhuan"],
         ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · 공원 옆 정원형","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan"]]]],
       cafes:[], note:"",
       photo:"<b>지아딘 공원</b> — 잔디·큰 나무·하늘 (해질녘 추천) · <b>Cafe Vườn Nhà Ai</b>, <b>Phố Cafe</b> (공원 전망)" },
@@ -162,9 +161,8 @@ const D = {
         ["18:45","Ăn tối","Chọn 1 quán bên dưới",""],
         ["20:00","Dạo công viên · trò chuyện","Công viên Gia Định","Cong vien Gia Dinh"]],
       groups:[["Bữa tối (gần công viên)",[
-        ["🇰🇷","Taka BBQ","16 Hoa Mai, P7, Phú Nhuận · thịt nướng","Taka BBQ 16 Hoa Mai Phu Nhuan"],
-        ["🇰🇷","MoonGo","284 Quang Trung, Gò Vấp · canh kim chi·mì","MoonGo 284 Quang Trung Go Vap"],
-        ["🇹🇭","TukTuk Thai Bistro","Phú Nhuận · Pad Thai·cà ri","TukTuk Thai Bistro Phu Nhuan"],
+        ["🇰🇷","Gogi House","Emart Gò Vấp, 366 Phan Văn Trị · thịt nướng","Gogi House Emart Go Vap Phan Van Tri"],
+        ["🇹🇭","TukTuk Thai Bistro","13 Hoa Mai, P7, Phú Nhuận · Pad Thai·cà ri","TukTuk Thai Bistro 13 Hoa Mai Phu Nhuan"],
         ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · sân vườn cạnh công viên","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan"]]]],
       cafes:[], note:"",
       photo:"<b>Công viên Gia Định</b> — bãi cỏ·cây lớn·bầu trời (hoàng hôn) · <b>Cafe Vườn Nhà Ai</b>, <b>Phố Cafe</b> (view công viên)" }
@@ -239,7 +237,7 @@ const D = {
           ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức 4F · 치킨·떡볶이","Chuti Korean Food Vincom Thu Duc"],
           ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · 샤브샤브","Manwah Vincom Le Van Viet"]]] ],
       cafes:[
-        ["La Rose Cafe","투득 · 꽃 가득 동화풍 🌸","La Rose Cafe Thu Duc"],
+        ["La Rose Cafe","1306 Kha Vạn Cân, Linh Trung · 꽃 가득 동화풍 🌸","La Rose Cafe Kha Van Can Thu Duc"],
         ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · 루프탑","Giang Duong Rooftop Le Van Viet"],
         ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · 모던","Katali Coffee Le Van Viet Hiep Phu"]],
       note:"⚠️ 수오이띠엔은 7군·고밥에서 멀어요(동부, 차로 40~60분) · 종일 코스 · 물놀이엔 수영복 · 모자·물 챙기기",
@@ -261,7 +259,7 @@ const D = {
           ["🇰🇷","Chuti Korean Food","Vincom Thủ Đức tầng 4 · gà·tteokbokki","Chuti Korean Food Vincom Thu Duc"],
           ["🇹🇼","Manwah Hotpot","Vincom Lê Văn Việt · lẩu","Manwah Vincom Le Van Viet"]]] ],
       cafes:[
-        ["La Rose Cafe","Thủ Đức · đầy hoa, phong cách cổ tích 🌸","La Rose Cafe Thu Duc"],
+        ["La Rose Cafe","1306 Kha Vạn Cân, Linh Trung · đầy hoa, cổ tích 🌸","La Rose Cafe Kha Van Can Thu Duc"],
         ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · sân thượng","Giang Duong Rooftop Le Van Viet"],
         ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · hiện đại","Katali Coffee Le Van Viet Hiep Phu"]],
       note:"⚠️ Suối Tiên khá xa Quận 7·Gò Vấp (phía Đông, ~40-60 phút) · cả ngày · khu nước cần đồ bơi · mang nón·nước",
