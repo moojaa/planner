@@ -133,11 +133,11 @@ function mapUrl(q){ return "https://www.google.com/maps/search/?api=1&query="+en
 /* ---------- UI strings ---------- */
 const T = {
   ko:{ brand:"주말 플랜 ✨", langBtn:"🇻🇳 Tiếng Việt", circus:"🎪 서커스", zoo:"🦒 동물원",
-       subA:"A · 사이공", subB:"B · 수오이띠엔", sched:"⏰ 일정", cafe:"☕ 카페 (포토 스팟)",
-       photo:"📷 사진 찍기 좋은 곳", maphint:"👆 탭하면 지도 (가기 전 영업 확인!) · 💵 1인 기준 🟢저렴 🟡보통 🟠높음" },
+       subA:"A · 사이공", subB:"B · 수오이띠엔", sched:"⏰ 일정", cafe:"☕ 카페",
+       photo:"", maphint:"👆 탭하면 지도 (가기 전 영업 확인!) · 💵 1인 기준 🟢저렴 🟡보통 🟠높음" },
   vi:{ brand:"Kế hoạch cuối tuần ✨", langBtn:"🇰🇷 한국어", circus:"🎪 Xiếc", zoo:"🦒 Sở thú",
-       subA:"A · Thảo Cầm Viên", subB:"B · Suối Tiên", sched:"⏰ Lịch trình", cafe:"☕ Cà phê (chụp hình)",
-       photo:"📷 Chỗ chụp hình đẹp", maphint:"👆 Bấm để mở bản đồ (kiểm tra mở cửa!) · 💵/người 🟢rẻ 🟡vừa 🟠cao" }
+       subA:"A · Thảo Cầm Viên", subB:"B · Suối Tiên", sched:"⏰ Lịch trình", cafe:"☕ Cà phê",
+       photo:"", maphint:"👆 Bấm để mở bản đồ (kiểm tra mở cửa!) · 💵/người 🟢rẻ 🟡vừa 🟠cao" }
 };
 
 /* ---------- DATA ---------- */
@@ -147,9 +147,9 @@ const D = {
       sched:[
         ["13:10","미니언즈 관람 🎬 (약 90분)","CGV Pearl Plaza<br>561A Điện Biên Phủ, Bình Thạnh","CGV Pearl Plaza Dien Bien Phu"],
         ["14:40","영화 후 공원 방면 이동","Pearl Plaza → 지아딘 공원",""],
-        ["15:20","공원 근처 카페·간식 (사진)","아래 ‘카페’ 중 택1",""],
+        ["15:20","공원 근처 카페·간식","아래 ‘카페’ 중 택1",""],
         ["17:00","서커스 관람 (약 90분)<br><small>MYSTERIOUS LAND · PRO MAX</small>","지아딘 파크 서커스<br>3 Hoàng Minh Giám","Gia Dinh Park Circus 3 Hoang Minh Giam"],
-        ["18:30","공원 산책 & 사진","지아딘 공원","Cong vien Gia Dinh"],
+        ["18:30","공원 산책","지아딘 공원","Cong vien Gia Dinh"],
         ["18:45","저녁 식사","아래 식당 중 택1",""],
         ["20:00","공원 산책 · 수다","지아딘 공원","Cong vien Gia Dinh"]],
       groups:[["저녁 (공원 인근)",[
@@ -157,17 +157,17 @@ const D = {
         ["🇹🇭","Chill Thai","41 Hồng Hà, Tân Bình · 지아딘 공원 인근 · 똠얌·그린커리","Chill Thai 41 Hong Ha Tan Binh","🟡 1인 ~150~250k"],
         ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · 공원 옆 정원형","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan","🟡 1인 ~150~250k · 베트남 가정식"]]]],
       cafes:[
-        ["Katinat","공원 근처 지점 검색 · 감성·가성비 (사진)","Katinat cong vien Gia Dinh Phu Nhuan","💵 음료 ~45~65k"],
+        ["Katinat","공원 근처 지점 검색 · 감성·가성비","Katinat cong vien Gia Dinh Phu Nhuan","💵 음료 ~45~65k"],
         ["Phúc Long","공원 근처 지점 · 차·커피","Phuc Long cong vien Gia Dinh Phu Nhuan","💵 음료 ~40~65k"],
         ["Cộng Cà Phê","공원 근처 지점 · 레트로 감성","Cong Ca Phe cong vien Gia Dinh Phu Nhuan","💵 음료 ~45~65k"]], note:"",
-      photo:"<b>지아딘 공원</b> — 잔디·큰 나무·하늘 (해질녘 추천). 공원 안에서 사진 찍기 좋아요" },
+      photo:"" },
     vi:{ tag:"Thứ Bảy 04/07", title:"🎪 Xiếc & Công viên Gia Định", sub:"Minions → Xiếc → Ăn tối → Dạo công viên",
       sched:[
         ["13:10","Xem phim Minions 🎬 (~90 phút)","CGV Pearl Plaza<br>561A Điện Biên Phủ, Bình Thạnh","CGV Pearl Plaza Dien Bien Phu"],
         ["14:40","Sau phim · di chuyển về CV Gia Định","Pearl Plaza → CV Gia Định",""],
-        ["15:20","Cà phê·ăn nhẹ gần công viên (chụp hình)","Chọn 1 ở mục ‘Cà phê’",""],
+        ["15:20","Cà phê·ăn nhẹ gần công viên","Chọn 1 ở mục ‘Cà phê’",""],
         ["17:00","Xem xiếc (khoảng 90 phút)<br><small>MYSTERIOUS LAND · PRO MAX</small>","Gia Dinh Park Circus<br>3 Hoàng Minh Giám","Gia Dinh Park Circus 3 Hoang Minh Giam"],
-        ["18:30","Dạo công viên & chụp hình","Công viên Gia Định","Cong vien Gia Dinh"],
+        ["18:30","Dạo công viên","Công viên Gia Định","Cong vien Gia Dinh"],
         ["18:45","Ăn tối","Chọn 1 quán bên dưới",""],
         ["20:00","Dạo công viên · trò chuyện","Công viên Gia Định","Cong vien Gia Dinh"]],
       groups:[["Bữa tối (gần công viên)",[
@@ -175,21 +175,21 @@ const D = {
         ["🇹🇭","Chill Thai","41 Hồng Hà, Tân Bình · gần CV Gia Định · tom yum·cà ri xanh","Chill Thai 41 Hong Ha Tan Binh","🟡 ~150-250k/người"],
         ["🇻🇳","Hoa Viên Tri Kỷ","123 Hồng Hà, P9 · sân vườn cạnh công viên","Hoa Vien Tri Ky 123 Hong Ha Phu Nhuan","🟡 ~150-250k/người · món Việt"]]]],
       cafes:[
-        ["Katinat","Chi nhánh gần công viên · chill·giá vừa (chụp hình)","Katinat cong vien Gia Dinh Phu Nhuan","💵 đồ uống ~45-65k"],
+        ["Katinat","Chi nhánh gần công viên · chill·giá vừa","Katinat cong vien Gia Dinh Phu Nhuan","💵 đồ uống ~45-65k"],
         ["Phúc Long","Chi nhánh gần công viên · trà·cà phê","Phuc Long cong vien Gia Dinh Phu Nhuan","💵 đồ uống ~40-65k"],
         ["Cộng Cà Phê","Chi nhánh gần công viên · phong cách retro","Cong Ca Phe cong vien Gia Dinh Phu Nhuan","💵 đồ uống ~45-65k"]], note:"",
-      photo:"<b>Công viên Gia Định</b> — bãi cỏ·cây lớn·bầu trời (hoàng hôn). Chụp hình đẹp ngay trong công viên" }
+      photo:"" }
   },
 
   zooA:{ theme:{grad:"linear-gradient(135deg,#69db7c,#38d9a9 60%,#3bc9db)",accent:"#188a5e",bg:"#ebfbee"},
     ko:{ tag:"동물원 A안", title:"🦒 사이공 동물원", sub:"아침 시작 · 동물·꽃 · 오후 미니언즈",
       sched:[
         ["09:00","입장","사이공 동물원<br>2 Nguyễn Bình Khiêm","Thao Cam Vien Saigon Zoo"],
-        ["~11:30","동물·식물원·꽃 + 사진","동물원 내부",""],
+        ["~11:30","동물·식물원·꽃 구경","동물원 내부",""],
         ["12:00","점심 (동물원 근처)","아래 ‘점심’",""],
         ["13:30","카페 · 휴식","아래 ‘카페’",""],
         ["14:30","미니언즈 관람 🎬","CGV Vincom Đồng Khởi<br>72 Lê Thánh Tôn","CGV Vincom Dong Khoi 72 Le Thanh Ton"],
-        ["16:30","응우옌후에 산책 + 사진","Nguyễn Huệ 보행자거리","Pho di bo Nguyen Hue"],
+        ["16:30","응우옌후에 산책","Nguyễn Huệ 보행자거리","Pho di bo Nguyen Hue"],
         ["18:00","저녁 (영화관·거리 근처)","아래 ‘저녁’",""],
         ["19:30","산책 · 휴식","Nguyễn Huệ / 강변",""]],
       groups:[
@@ -205,15 +205,15 @@ const D = {
         ["The Workshop Coffee","27 Ngô Đức Kế · 응우옌후에 인근","The Workshop Coffee 27 Ngo Duc Ke","💵 음료 ~55~75k"],
         ["Cộng Cà Phê","Q1 지점 다수 · 레트로 감성","Cong Ca Phe District 1","💵 음료 ~45~65k"]],
       note:"",
-      photo:"<b>식물원 구역</b> — 큰 나무·꽃·온실 (오전 햇살) · <b>응우옌후에</b> — 분수·하늘·야경" },
+      photo:"" },
     vi:{ tag:"Sở thú · Phương án A", title:"🦒 Thảo Cầm Viên", sub:"Buổi sáng · thú·hoa · chiều xem Minions",
       sched:[
         ["09:00","Vào cổng","Thảo Cầm Viên<br>2 Nguyễn Bình Khiêm","Thao Cam Vien Saigon Zoo"],
-        ["~11:30","Xem thú·vườn thực vật·hoa + chụp hình","Trong sở thú",""],
+        ["~11:30","Xem thú·vườn thực vật·hoa","Trong sở thú",""],
         ["12:00","Ăn trưa (gần sở thú)","Mục ‘Trưa’",""],
         ["13:30","Cà phê · nghỉ ngơi","Mục ‘Cà phê’",""],
         ["14:30","Xem phim Minions 🎬","CGV Vincom Đồng Khởi<br>72 Lê Thánh Tôn","CGV Vincom Dong Khoi 72 Le Thanh Ton"],
-        ["16:30","Dạo Nguyễn Huệ + chụp hình","Phố đi bộ Nguyễn Huệ","Pho di bo Nguyen Hue"],
+        ["16:30","Dạo Nguyễn Huệ","Phố đi bộ Nguyễn Huệ","Pho di bo Nguyen Hue"],
         ["18:00","Ăn tối (gần rạp·phố)","Mục ‘Tối’",""],
         ["19:30","Dạo · nghỉ ngơi","Nguyễn Huệ / bờ sông",""]],
       groups:[
@@ -229,17 +229,17 @@ const D = {
         ["The Workshop Coffee","27 Ngô Đức Kế · gần Nguyễn Huệ","The Workshop Coffee 27 Ngo Duc Ke","💵 đồ uống ~55-75k"],
         ["Cộng Cà Phê","Nhiều chi nhánh Q1 · phong cách retro","Cong Ca Phe District 1","💵 đồ uống ~45-65k"]],
       note:"",
-      photo:"<b>Khu vườn thực vật</b> — cây lớn·hoa·nhà kính · <b>Nguyễn Huệ</b> — đài phun nước·bầu trời·cảnh đêm" }
+      photo:"" }
   },
 
   zooB:{ theme:{grad:"linear-gradient(135deg,#4dabf7,#3bc9db 60%,#63e6be)",accent:"#1c7ed6",bg:"#e7f5ff"},
     ko:{ tag:"동물원 B안", title:"🎢 수오이띠엔", sub:"아침 시작 · 테마파크+동물+물놀이 · 종일",
       sched:[
         ["09:00","입장","수오이띠엔<br>120 Xa lộ Hà Nội, Thủ Đức","Suoi Tien Theme Park Thu Duc"],
-        ["~12:00","테마존·동물(악어호)·사진","공원 내부",""],
+        ["~12:00","테마존·동물(악어호) 구경","공원 내부",""],
         ["12:30","점심 (공원 내/정문)","Suối Tiên Food Station",""],
         ["14:00","오후 구경 또는 물놀이","공원 내부",""],
-        ["17:00","카페 휴식 (사진)","아래 ‘카페’",""],
+        ["17:00","카페 휴식","아래 ‘카페’",""],
         ["18:30","저녁 (에어컨 ↑)","아래 ‘저녁’",""]],
       groups:[
         ["🍱 점심 (공원 내·정문)",[
@@ -254,14 +254,14 @@ const D = {
         ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · 루프탑","Giang Duong Rooftop Le Van Viet","💵 음료 ~40~60k (가성비)"],
         ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · 모던","Katali Coffee Le Van Viet Hiep Phu","💵 음료 ~45~65k"]],
       note:"⚠️ 수오이띠엔은 7군·고밥에서 멀어요(동부, 차로 40~60분) · 종일 코스 · 물놀이엔 수영복 · 모자·물 챙기기",
-      photo:"<b>용·궁궐 조형물, 호수</b> — 화려한 배경·하늘 · 컬러풀 포토 스팟 多" },
+      photo:"" },
     vi:{ tag:"Sở thú · Phương án B", title:"🎢 Suối Tiên", sub:"Buổi sáng · công viên chủ đề+thú+khu nước · cả ngày",
       sched:[
         ["09:00","Vào cổng","Suối Tiên<br>120 Xa lộ Hà Nội, Thủ Đức","Suoi Tien Theme Park Thu Duc"],
-        ["~12:00","Khu chủ đề·thú (hồ cá sấu)·chụp hình","Trong công viên",""],
+        ["~12:00","Khu chủ đề·thú (hồ cá sấu)","Trong công viên",""],
         ["12:30","Ăn trưa (trong CV/cổng)","Suối Tiên Food Station",""],
         ["14:00","Tham quan chiều / khu nước","Trong công viên",""],
-        ["17:00","Nghỉ cà phê (chụp hình)","Mục ‘Cà phê’",""],
+        ["17:00","Nghỉ cà phê","Mục ‘Cà phê’",""],
         ["18:30","Ăn tối (mát, máy lạnh)","Mục ‘Tối’",""]],
       groups:[
         ["🍱 Bữa trưa (trong CV·cổng)",[
@@ -276,7 +276,7 @@ const D = {
         ["Giảng Đường Rooftop","B2/1 Đường 385 Lê Văn Việt · sân thượng","Giang Duong Rooftop Le Van Viet","💵 đồ uống ~40-60k"],
         ["Katali Coffee","179 Lê Văn Việt, Hiệp Phú · hiện đại","Katali Coffee Le Van Viet Hiep Phu","💵 đồ uống ~45-65k"]],
       note:"⚠️ Suối Tiên khá xa Quận 7·Gò Vấp (phía Đông, ~40-60 phút) · cả ngày · khu nước cần đồ bơi · mang nón·nước",
-      photo:"<b>Tượng rồng·cung điện, hồ nước</b> — nền hoành tráng·bầu trời · nhiều góc sống ảo" }
+      photo:"" }
   }
 };
 
@@ -360,8 +360,8 @@ function render(){
   // note
   if(p.note){ h += `<div class="note">${p.note}</div>`; }
 
-  // photo
-  h += `<div class="sec"><div class="sec-title">${t.photo}</div><div class="photo">${p.photo}</div></div>`;
+  // photo (생략 가능)
+  if(p.photo){ h += `<div class="sec"><div class="sec-title">${t.photo}</div><div class="photo">${p.photo}</div></div>`; }
 
   document.getElementById('content').innerHTML = h;
 }
