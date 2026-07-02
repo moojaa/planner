@@ -370,8 +370,15 @@ function render(){
 const nope = document.getElementById('nope');
 let nopeFixed = false;
 function lockVisible(){ return document.getElementById('lock').style.display !== 'none'; }
+// 입력창·수락 버튼이 든 박스 영역과 겹치면 안 됨 (안 그러면 클릭/입력 막힘)
+function overlapsBox(x, y, w, h){
+  const box = document.querySelector('#lock .box');
+  if(!box || !box.getBoundingClientRect) return false;
+  const r = box.getBoundingClientRect(), pad = 14;
+  return !(x + w < r.left - pad || x > r.right + pad || y + h < r.top - pad || y > r.bottom + pad);
+}
 function dodge(px, py){
-  const bw = nope.offsetWidth, bh = nope.offsetHeight;
+  const bw = nope.offsetWidth || 120, bh = nope.offsetHeight || 42;
   const maxX = Math.max(5, window.innerWidth  - bw - 8);
   const maxY = Math.max(5, window.innerHeight - bh - 8);
   let nx, ny, tries = 0;
@@ -379,7 +386,10 @@ function dodge(px, py){
     nx = 5 + Math.random() * maxX;
     ny = 5 + Math.random() * maxY;
     tries++;
-  } while (px != null && Math.hypot((nx+bw/2)-px, (ny+bh/2)-py) < 160 && tries < 25);
+  } while (tries < 60 && (
+    (px != null && Math.hypot((nx+bw/2)-px, (ny+bh/2)-py) < 150) ||
+    overlapsBox(nx, ny, bw, bh)
+  ));
   if(!nopeFixed){ nope.style.position = 'fixed'; nope.style.margin = '0'; nopeFixed = true; }
   nope.style.left = nx + 'px';
   nope.style.top  = ny + 'px';
